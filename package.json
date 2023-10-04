@@ -1,6 +1,6 @@
 {
-  "name": "ds-musicqueue-t",
-  "version": "1.0.1",
+  "name": "ds-musicqueue",
+  "version": "1.0.0",
   "description": "A music queue for discord.js",
   "main": "musicqueue.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/MrMaxing/ds-musicqueue"
   },
   "author": "Mr Maxing",
   "license": "ISC",
