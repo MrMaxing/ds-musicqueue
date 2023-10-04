@@ -1,0 +1,19 @@
+{
+  "name": "ds-musicqueue-t",
+  "version": "1.0.1",
+  "description": "A music queue for discord.js",
+  "main": "musicqueue.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Mr Maxing",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/voice": "^0.16.0",
+    "events": "^3.3.0"
+  }
+}
