@@ -19,12 +19,12 @@ import { MusicQueue, MusicQueueEvent } from './MusicQueue'; // Replace with the 
 
 // Create a MusicQueue instance for a guild
 const guildId = 'your_guild_id';
-const queue = new MusicQueue<string>(guildId);
+const queue = new MusicQueue<string>();
 
 // Add music to the queue
 const musicItem = {
   audio: audioResource,
-  data: 'Song Title',
+  data: 'Song Title'
 };
 queue.set(musicItem);
 
@@ -34,10 +34,10 @@ queue.on(MusicQueueEvent.skip, (guildId, songs) => {
 });
 
 // Other queue operations
-queue.skip();
-queue.next();
-queue.remove();
-queue.clear();
+queue.skip(guildId);
+queue.next(guildId);
+queue.remove(guildId);
+queue.clear(guildId);
 ```
 
 ## License

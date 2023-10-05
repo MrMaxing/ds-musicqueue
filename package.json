@@ -1,6 +1,6 @@
 {
   "name": "ds-musicqueue",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A music queue for discord.js",
   "main": "musicqueue.js",
   "scripts": {

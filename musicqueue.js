@@ -15,88 +15,90 @@ class MusicQueue {
      */
     emitter;
     /**
-     * The ID of the guild.
-     */
-    guild;
-    /**
      * Creates a new MusicQueue instance for the specified guild.
      * @param guild_id The ID of the guild.
      */
-    constructor(guild_id) {
-        this.guild = guild_id;
+    constructor() {
         this.queue = new Map();
         this.emitter = new events_1.EventEmitter();
-        if (!this.queue.has(this.guild)) {
-            this.queue.set(this.guild, []);
-        }
     }
     /**
      * Add music to the queue.
+     * @param guildId The ID of the guild.
      * @param music The music item to add.
-     */
-    set(music) {
-        this.queue.get(this.guild)?.push(music);
-        this.emitter.emit('addSong', this.guild, music);
+    */
+    set(guildId, music) {
+        if (!this.queue.has(guildId)) {
+            this.queue.set(guildId, []);
+        }
+        this.queue.get(guildId)?.push(music);
+        this.emitter.emit('set', guildId, music);
     }
     /**
      * Skip the currently playing song.
+     * @param guildId The ID of the guild.
      */
-    skip() {
-        if (!this.queue.has(this.guild))
+    skip(guildId) {
+        if (!this.queue.has(guildId))
             return;
-        const queue = this.queue.get(this.guild);
+        const queue = this.queue.get(guildId);
         if (queue && queue.length > 0) {
             queue.shift();
-            this.emitter.emit('skip', this.guild, queue[0]);
+            this.emitter.emit('skip', guildId, queue[0]);
         }
     }
     /**
      * Play the next song in the queue.
+     * @param guildId The ID of the guild.
      */
-    next() {
-        if (!this.queue.has(this.guild))
+    next(guildId) {
+        if (!this.queue.has(guildId))
             return;
-        const queue = this.queue.get(this.guild);
+        const queue = this.queue.get(guildId);
         if (queue && queue.length > 0) {
             queue.shift();
-            this.emitter.emit('naxt', this.guild, queue[0]);
+            this.emitter.emit('naxt', guildId, queue[0]);
         }
     }
     /**
     * Remove the currently playing song from the queue.
+    * @param guildId The ID of the guild.
     */
-    remove() {
-        if (!this.queue.has(this.guild))
+    remove(guildId) {
+        if (!this.queue.has(guildId))
             return;
-        const queue = this.queue.get(this.guild);
+        const queue = this.queue.get(guildId);
         if (queue && queue.length > 0) {
             queue.shift();
-            this.emitter.emit('remove', this.guild, queue[0]);
+            this.emitter.emit('remove', guildId, queue[0]);
         }
     }
     /**
     * Clear the entire music queue.
+    * @param guildId The ID of the guild.
     */
-    clear() {
-        if (!this.queue.has(this.guild))
+    clear(guildId) {
+        if (!this.queue.has(guildId))
             return;
-        const queue = this.queue.get(this.guild);
+        const queue = this.queue.get(guildId);
         if (queue && queue.length > 0) {
             queue.shift();
-            this.emitter.emit('clear', this.guild, queue[0]);
+            this.emitter.emit('clear', guildId, queue[0]);
         }
     }
     /**
      * Get the current music queue for the guild.
+     * @param guildId The ID of the guild.
      */
-    get() {
-        return this.queue.get(this.guild) ?? [];
+    get(guildId) {
+        return this.queue.get(guildId) ?? [];
     }
     /**
      * Get the length of the music queue.
+     * @param guildId The ID of the guild.
      */
-    length() {
-        return this.queue.get(this.guild)?.length || 0;
+    length(guildId) {
+        return this.queue.get(guildId)?.length || 0;
     }
     /**
      * Subscribe to a music queue event.
